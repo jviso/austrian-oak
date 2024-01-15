@@ -57,7 +57,7 @@ fn write_to_journal(events: &[Event]) -> Result<(), String> {
 fn update_or_insert_state(events: &[Event]) -> Result<(), String> {
     // TODO: This could be a few functions.
     let state_name = env::var("AUSTRIAN_OAK_STATE_LOCATION").map_err(|_| {
-        "Failed to find a journal location; \
+        "Failed to find a state location; \
             please ensure the `AUSTRIAN_OAK_STATE_LOCATION` environment variable is set."
     })?;
     let mut state_file = OpenOptions::new()
