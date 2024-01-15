@@ -6,12 +6,12 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub(crate) struct Event {
-    r#type: EventType,
-    details: EventDetails,
-    date: NaiveDate,
+    pub(crate) r#type: EventType,
+    pub(crate) details: EventDetails,
+    pub(crate) date: NaiveDate,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 #[serde(rename_all = "lowercase")]
 pub(crate) enum EventType {
     Deadlift,
@@ -35,7 +35,7 @@ pub(crate) enum EventType {
     WeighIn,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "lowercase", untagged)]
 pub(crate) enum EventDetails {
     Strength {
@@ -58,7 +58,7 @@ pub(crate) enum EventDetails {
     },
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "lowercase")]
 pub(crate) enum Intensity {
     Low,
@@ -66,7 +66,7 @@ pub(crate) enum Intensity {
     High,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "lowercase")]
 pub(crate) enum Quality {
     Good,
@@ -109,7 +109,6 @@ static SHORTCODES: phf::Map<&'static str, &'static str> = phf_map! {
 
 fn wrap_with_quotes(s: &str) -> String {
     format!("\"{}\"", s)
-
 }
 
 impl TryFrom<&str> for Event {
