@@ -14,6 +14,11 @@ There is not a distribution or package of any kind. Compile from source directly
 `austrian-oak` stores events in a simple JSONL file. Before logging an event, this file must exist,
 and its path must be described by the environment variable `AUSTRIAN_OAK_JOURNAL_LOCATION`.
 
+### State file
+
+`austrian-oak` stores current state in a second JSONL file. Before using the app, this file must
+exist, and its path must be described by the environment variable `AUSTRIAN_OAK_STATE_LOCATION`.
+
 ## Usage
 
 ### Log an event
