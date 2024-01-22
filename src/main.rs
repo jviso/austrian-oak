@@ -12,6 +12,10 @@ pub struct AustrianOak {
     command: Command,
 }
 
+// TODO
+// 1. Display last n days (default 1) of data for a given event
+// 2. Display shortcodes
+
 #[derive(Subcommand)]
 enum Command {
     Log { input: String },

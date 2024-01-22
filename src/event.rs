@@ -29,6 +29,8 @@ pub(crate) enum EventType {
     Nordic,
     WidePulldown,
     NarrowPulldown,
+    FacePull,
+    LateralRaise,
     Conditioning,
     Sleep,
     Nutrition,
@@ -101,6 +103,8 @@ static SHORTCODES: phf::Map<&'static str, &'static str> = phf_map! {
     "no" => "nordic",
     "wp" => "widepulldown",
     "np" => "narrowpulldown",
+    "fp" => "facepull",
+    "lr" => "lateralraise",
     "co" => "conditioning",
     "sl" => "sleep",
     "nu" => "nutrition",
@@ -198,7 +202,9 @@ impl TryFrom<&str> for Event {
             | EventType::TricepPushdown
             | EventType::Nordic
             | EventType::WidePulldown
-            | EventType::NarrowPulldown => {
+            | EventType::NarrowPulldown
+            | EventType::FacePull
+            | EventType::LateralRaise => {
                 // TODO: Add opinionated parsing to protect against flipping these fields:
                 //       - `reps` should not be > 100
                 let load = serde_json::from_str(

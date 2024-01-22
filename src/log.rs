@@ -83,7 +83,9 @@ fn update_or_insert_state(events: &[Event]) -> Result<(), String> {
             state
         }
     };
-    state_file.set_len(0).map_err(|e| format!("Failed to clear state file: {}", e))?;
+    state_file
+        .set_len(0)
+        .map_err(|e| format!("Failed to clear state file: {}", e))?;
     state_file
         .write_all(
             &serde_json::to_string(&state)
