@@ -86,8 +86,7 @@ fn today() -> NaiveDate {
     chrono::Local::now().date_naive()
 }
 
-// TODO: Add "show shortcodes" command
-static SHORTCODES: phf::Map<&'static str, &'static str> = phf_map! {
+pub(crate) static SHORTCODES: phf::Map<&'static str, &'static str> = phf_map! {
     "dl" => "deadlift",
     "sq" => "squat",
     "fs" => "frontsquat",
